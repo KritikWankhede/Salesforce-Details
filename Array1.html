@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script>
+	 alert('Check Check1');
+	// new keyword
+   
+	let fruits = new Array("mango","apple","banana","guava"); // Other way of declaring the array//
+    document.write(fruits + "<br><br>");
+    document.write(fruits.length +"<br><br>");
+    document.write(fruits[2] + "<br><br>"); // Array index no 2 (Starts from 0 pos)
+    alert('Check Check2');
+    
+  //array literal notation i.e. [](square brackets).
+
+   let fruitsnew= ["mango","apple","banana","guava","Litchee"];
+    for(let i=0; i < fruitsnew.length; i++)  // length is an Array Property  
+    {
+    	document.write(fruitsnew[i] + " ");
+    }
+    
+   
+ // using forEach function
+   alert('Check Check3');
+	let bikes = ["Honda", "KTM", "Yamaha"];
+    bikes.forEach(function(item, index, array) 
+			{
+    			document.write(item, index);
+			})
+   
+
+</script>
+</body>
+</html>

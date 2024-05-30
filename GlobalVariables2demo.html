@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Variables : JavaScript</title>
+<script>
+	
+	var gVar='This is global value';
+	var someVar='This is some other gobal value';
+	var someVar1='Welcome';
+	
+	function aFun()
+	{
+		alert(gVar); // js metod to display something
+		// Implicit declaration automatically
+		// considered as global data
+		x='Global Data 1';
+		//Global variable declaration using window object
+		window.y='Global Data 2';
+		alert(window.y);
+		
+		let ab='Shiva'; //local variable 
+		alert(ab);
+	}
+	
+	function bFun(){
+		// verifying global variables
+		alert(gVar);
+		
+		alert(x);
+		alert(y);
+	}
+	
+	function cFun(){
+		
+		/* This returns undefined : Because it is ambigous  to the interpreter 
+		 Comment rest of the code and this will pop up the global variable value at line
+		 number 36 it is connfused*/
+		 
+		alert(someVar);
+		alert(someVar1);
+		
+		var someVar='This is a local value';
+		alert(someVar);
+		
+		// This is referencing to the global varible
+		// Using the reference of window object
+		// removes the ambiguity 
+		alert(window.someVar);
+		// displays 'This is some other gobal value' which is global value
+	}
+	
+	</script>
+</head>
+<body>
+<!-- to invoke these three functions created three buttons with onClick event -->
+	<input type="button" value="aFun" onclick="aFun()">
+	<input type="button" value="bFun" onclick="bFun()">
+	<input type="button" value="cFun" onclick="cFun()">
+
+	
+</body>
+</html>

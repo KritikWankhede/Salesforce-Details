@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Conditional Statement : JavaScript</title>
+<link rel="stylesheet" type="text/css" href="NewFile.css">
+<script>
+
+		function showMessage()
+		{
+			var scoreObtained=document.getElementById('score').value; // Document Object..(DOM)
+			var messageShown;
+			
+			if(scoreObtained>=75) 
+			{
+				if(scoreObtained<=100) //Nested If
+				{
+					messageShown='Excellent';
+				}else
+				{
+					messageShown='Invalid Score';
+				}
+			}
+			else if(scoreObtained>=60 && scoreObtained<75)//Else if //&& is AND Oper(Logical Opp)
+			{
+				messageShown='Very Good';
+			}else
+			{
+				messageShown='Should have done better';
+			}
+			alert('Hello User! \n'+messageShown);
+		}
+		
+</script>
+</head>
+<body>
+<h1>Enter Your Score</h1><br/>
+Created a Text Box to enter a value <br/><br/>
+	Enter score:<input type="text" id="score"><br/><br/>
+	<input type="button" value="Show" onclick="showMessage()">
+
+</body>
+</html>
