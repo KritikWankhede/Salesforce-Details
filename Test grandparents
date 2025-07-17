@@ -1,0 +1,34 @@
+Map<Id, Id> ruleToTreeMap = new Map<Id, Id>();
+for (MWW_Approval_Rule__c rule : [
+    SELECT Id, Approval_Tree__c FROM MWW_Approval_Rule__c
+]) {
+    ruleToTreeMap.put(rule.Id, rule.Approval_Tree__c);
+}
+
+Map<String, Set<Id>> treeCriteriaMap = new Map<String, Set<Id>>();
+
+for (MWW_Approval_Criteria__c crit : [
+    SELECT Id, Name, Approval_Rule__c FROM MWW_Approval_Criteria__c
+]) {
+    Id treeId = ruleToTreeMap.get(crit.Approval_Rule__c);
+    if (treeId == null) continue;
+
+    String key = treeId + ':' + crit.Name;
+    if (!treeCriteriaMap.containsKey(key)) {
+        treeCriteriaMap.put(key, new Set<Id>());
+    }
+    treeCriteriaMap.get(key).add(crit.Id);
+}
+
+// Now identify duplicates
+Set<Id> duplicateTreeIds = new Set<Id>();
+for (String key : treeCriteriaMap.keySet()) {
+    if (treeCriteriaMap.get(key).size() > 1) {
+        Id treeId = (Id)(key.split(':')[0]);
+        duplicateTreeIds.add(treeId);
+    }
+}
+
+List<MWW_Approval_Tree__c> treesWithDuplicates = [
+    SELECT Id, Name FROM MWW_Approval_Tree__c WHERE Id IN :duplicateTreeIds
+];
